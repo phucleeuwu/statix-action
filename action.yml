@@ -1,0 +1,42 @@
+name: 'statix-action'
+description: 'Lint and fix Nix code with Statix, then commit and push the changes'
+inputs:
+  flags:
+    description: 'Command-line flags to statix'
+    required: false
+    default: 'fix'
+  author:
+    description: 'Author name and email in the format `Name <email@address.com>`'
+    required: false
+    default: '${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>'
+  committer:
+    description: 'Committer name and email'
+    required: false
+    default: 'GitHub <noreply@github.com>'
+  directory:
+    description: 'Directory to scan for linting'
+    required: false
+    default: '.'
+  commit_message:
+    description: 'Commit message'
+    required: false
+    default: 'Fix Nix code with Statix'
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Statix
+      run: nix run nixpkgs#statix -- ${{ inputs.flags }} ${{ inputs.directory }}
+      shell: bash
+      id: statix
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "${{ inputs.author }}"
+        git config --global user.email "${{ inputs.author }}"
+        git add .
+        git commit -m "${{ inputs.commit_message }}" || echo "No changes to commit"
+        git push origin HEAD:${{ github.ref_name }}
+      shell: bash
+branding:
+  icon: 'check-circle'
+  color: 'green'
