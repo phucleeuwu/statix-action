@@ -1,4 +1,4 @@
-name: 'statix-action'
+name: 'nix-statix-action'
 description: 'Lint and fix Nix code with Statix, then commit and push the changes'
 inputs:
   flags:
