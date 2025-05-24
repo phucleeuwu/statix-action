@@ -61,7 +61,8 @@ runs:
             --base "${{ github.ref_name }}"
         else
           git push origin HEAD:${{ github.ref_name }}
-
+        fi
+        
 branding:
   icon: 'check-circle'
   color: 'green'
