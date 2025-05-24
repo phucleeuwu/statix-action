@@ -31,8 +31,14 @@ jobs:
 
 ## ⚙️ Inputs
 
-| Input Name       | Description                                 | Default Value |
-|-----------------|--------------------------------------------|--------------|
-| `flags`         | Command-line flags to Statix              | `fix`        |
-| `author`        | Author of the commit                      | `${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>` |
-| `open_pr`       | Open pull request                          | `false`      |
+Input | Description | Default
+-- | -- | --
+flags | Command-line flags to Statix | fix
+author | Author name and email | ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+committer | Committer name and email | GitHub <noreply@github.com>
+directory | Directory to scan | .
+commit_message | Git commit message | Chore: Fix Nix code with Statix
+open_pr | Whether to create a pull request instead | false
+
+
+
