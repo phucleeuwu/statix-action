@@ -36,4 +36,3 @@ jobs:
 | `flags`         | Command-line flags to Statix              | `fix`        |
 | `author`        | Author of the commit                      | `${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>` |
 | `open_pr`       | Open pull request                          | `false`      |
-| `exclude`       | Exclude directory                          | none         |
