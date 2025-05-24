@@ -14,18 +14,17 @@ To use **Statix Action** in your workflow, add the following to `.github/workflo
 ```yaml
 name: Statix Linter
 
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+  push:
 
 jobs:
   statix:
     name: Statix Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: cachix/install-nix-action@v25
-      - uses: cachix/cachix-action@v14
-        with:
-          name: statix
+      - uses: actions/checkout@main
+      - uses: cachix/install-nix-action@v31
       - uses: phucleeuwu/statix-action@v2
 ```
 
